@@ -34,7 +34,7 @@ func TestConformanceCorpus(t *testing.T) {
 	}
 	counts := map[Status]int{}
 	for _, expected := range exactCorpus {
-		path := filepath.Join("testdata", "corpus", expected.name+".gooo")
+		path := corpusPath(expected.name)
 		data, err := os.ReadFile(path)
 		if err != nil {
 			t.Fatalf("read %s: %v", path, err)
@@ -82,7 +82,7 @@ func TestConformanceCorpus(t *testing.T) {
 }
 
 func TestDeterministicReplay(t *testing.T) {
-	data, err := os.ReadFile(filepath.Join("testdata", "corpus", "08-exact-replay-human-decision.gooo"))
+	data, err := os.ReadFile(corpusPath("08-exact-replay-human-decision"))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -128,7 +128,7 @@ func TestDeterministicReplay(t *testing.T) {
 }
 
 func TestArtifactAudit(t *testing.T) {
-	data, err := os.ReadFile(filepath.Join("testdata", "corpus", "01-valid-foundation.gooo"))
+	data, err := os.ReadFile(corpusPath("01-valid-foundation"))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -196,4 +196,8 @@ func TestStatusOrdering(t *testing.T) {
 
 func jsonUnmarshal(data []byte, target any) error {
 	return json.Unmarshal(data, target)
+}
+
+func corpusPath(name string) string {
+	return filepath.Join("..", "..", "testdata", "corpus", name+".gooo")
 }
