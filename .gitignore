@@ -1,0 +1,20 @@
+# Build and test outputs
+/bin/
+/build/
+/dist/
+/out/
+/coverage/
+/tmp/
+
+# Go toolchain outputs
+*.test
+*.out
+*.prof
+
+# OS/editor files
+.DS_Store
+.idea/
+.vscode/
+
+# Generated local reports
+reports/local/
