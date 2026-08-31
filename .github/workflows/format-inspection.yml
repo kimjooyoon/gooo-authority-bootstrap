@@ -1,7 +1,8 @@
 name: format-inspection
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [implementation]
 
 permissions:
   contents: read
