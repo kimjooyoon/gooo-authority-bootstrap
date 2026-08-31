@@ -33,3 +33,21 @@ All local Go build, test, vet, format, compiler, harness, and conformance runs
 are prohibited by process policy. GitHub Actions is the executable validation
 environment. Development-only operations are reported separately from product
 metrics.
+
+## Run the evaluator
+
+Use a caller-owned output directory:
+
+```text
+go run ./cmd/gooo-bootstrap \
+  -source .gooo/authority.gooo \
+  -output /caller-owned/output \
+  -inventory-root .
+```
+
+The command emits `bootstrap-proposal.json`, `bootstrap-receipt.json`,
+`semantic-ir.json`, `generated/evaluator.go`, `human-dossier.md`, and a
+`manifest.json`. A `REFUTED` or `UNKNOWN` decision is a deterministic product
+result; only malformed source or an unwritable caller-owned output is a command
+error. See [the RFC](docs/RFC.md) and [the lifecycle record](docs/PROCESS.md)
+for the protocol and release process.

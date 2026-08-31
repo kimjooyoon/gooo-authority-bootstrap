@@ -10,10 +10,10 @@ import (
 )
 
 type corpusExpectation struct {
-	name          string
-	want          Status
-	blockedBy     []string
-	wantPartial   bool
+	name            string
+	want            Status
+	blockedBy       []string
+	wantPartial     bool
 	wantContinuable int
 }
 

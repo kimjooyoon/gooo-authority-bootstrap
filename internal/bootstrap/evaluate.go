@@ -22,7 +22,7 @@ func Evaluate(ir SemanticIR, metrics Metrics) (Evaluation, error) {
 
 	if input.ObservedArtifacts.Paths.ObservedCount < input.ObservedArtifacts.Paths.ExpectedCount {
 		partial = append(partial, PartialObservation{
-			ArtifactID:               input.ObservedArtifacts.Paths.ArtifactID,
+			ArtifactID:                input.ObservedArtifacts.Paths.ArtifactID,
 			ExpectedCount:             input.ObservedArtifacts.Paths.ExpectedCount,
 			ObservedCount:             input.ObservedArtifacts.Paths.ObservedCount,
 			ValidAsPartialObservation: true,
@@ -97,22 +97,22 @@ func Evaluate(ir SemanticIR, metrics Metrics) (Evaluation, error) {
 
 	requirements := requiredAuthority(input, status, blockedBy)
 	proposal := Proposal{
-		SchemaVersion:                 "gooo-proposal/v1",
-		Decision:                      status,
-		Choice:                        input.Choice,
-		Repository:                    input.Repository,
-		Tuple:                         input.Tuple,
-		ProtectedPaths:                append([]string(nil), input.ProtectedPaths...),
-		CurrentOwnershipPolicyDigest:  input.CurrentOwnershipPolicyDigest,
-		EvaluatorReleaseDigest:        input.ImmutableEvaluatorReleaseDigest,
+		SchemaVersion:                "gooo-proposal/v1",
+		Decision:                     status,
+		Choice:                       input.Choice,
+		Repository:                   input.Repository,
+		Tuple:                        input.Tuple,
+		ProtectedPaths:               append([]string(nil), input.ProtectedPaths...),
+		CurrentOwnershipPolicyDigest: input.CurrentOwnershipPolicyDigest,
+		EvaluatorReleaseDigest:       input.ImmutableEvaluatorReleaseDigest,
 		ProposedAuthorityDelta:        input.ProposedAuthorityDelta,
-		RequiredExternalAuthority:     requirements,
-		BlockedBy:                     blockedBy,
-		UnknownFrontier:               unknownFrontier,
-		Refutations:                   refutations,
-		PartialObservations:           partial,
-		ContinuableActivities:         continuableActivities(input),
-		Metrics:                       metrics,
+		RequiredExternalAuthority:    requirements,
+		BlockedBy:                    blockedBy,
+		UnknownFrontier:              unknownFrontier,
+		Refutations:                  refutations,
+		PartialObservations:          partial,
+		ContinuableActivities:        continuableActivities(input),
+		Metrics:                      metrics,
 	}
 
 	receipt := Receipt{

@@ -10,10 +10,10 @@ import (
 )
 
 type ArtifactFile struct {
-	Path         string `json:"path"`
-	Bytes        int    `json:"bytes"`
+	Path          string `json:"path"`
+	Bytes         int    `json:"bytes"`
 	PhysicalLines int   `json:"physical_lines"`
-	Digest       string `json:"digest"`
+	Digest        string `json:"digest"`
 }
 
 type ArtifactManifest struct {
@@ -92,10 +92,10 @@ func WriteArtifacts(outputDir string, ir SemanticIR, evaluation Evaluation, gene
 	dossier := []byte(RenderDossier(ir, evaluation, evaluation.Proposal.Metrics))
 	files := map[string][]byte{
 		"bootstrap-proposal.json": proposal,
-		"bootstrap-receipt.json": receipt,
-		"semantic-ir.json":       semanticIR,
-		"generated/evaluator.go": generated,
-		"human-dossier.md":       dossier,
+		"bootstrap-receipt.json":  receipt,
+		"semantic-ir.json":        semanticIR,
+		"generated/evaluator.go":  generated,
+		"human-dossier.md":        dossier,
 	}
 	paths := []string{"bootstrap-proposal.json", "bootstrap-receipt.json", "semantic-ir.json", "generated/evaluator.go", "human-dossier.md"}
 	manifest := ArtifactManifest{SchemaVersion: "gooo-artifact-manifest/v1", Files: make([]ArtifactFile, 0, len(paths))}
