@@ -1,0 +1,45 @@
+name: immutable-release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing immutable tag to publish
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: release
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout exact tag
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag }}
+          fetch-depth: 0
+      - name: Set up Go 1.27
+        uses: actions/setup-go@v6
+        with:
+          go-version: '1.27.x'
+          cache: true
+      - name: Re-run required validation
+        run: |
+          test -z "$(gofmt -l .)"
+          go build ./...
+          go test ./...
+          go vet ./...
+          go test ./internal/bootstrap -run '^TestConformanceCorpus$' -count=1
+          go test ./internal/bootstrap -run '^TestDeterministicReplay$' -count=1
+          go test ./internal/bootstrap -run '^TestArtifactAudit$' -count=1
+      - name: Generate release artifacts
+        run: go run ./cmd/gooo-bootstrap -source .gooo/authority.gooo -output "$RUNNER_TEMP/gooo-authority-release" -inventory-root .
+      - name: Publish immutable release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tar -C "$RUNNER_TEMP/gooo-authority-release" -czf "$RUNNER_TEMP/gooo-authority-release.tar.gz" .
+          gh release create "${{ inputs.tag }}" "$RUNNER_TEMP/gooo-authority-release.tar.gz" --verify-tag --title "${{ inputs.tag }}" --notes "Immutable Gooo bootstrap evaluator artifacts."
