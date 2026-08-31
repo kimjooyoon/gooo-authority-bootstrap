@@ -1,0 +1,17 @@
+gooo 1
+choice "COHERENCE"
+repository "kimjooyoon/gooo-authority-bootstrap"
+tuple {"repository":"kimjooyoon/gooo-authority-bootstrap","base":"base-20260830","head":"head-20260831","pr":609}
+candidate {"id":"candidate-07","branch":"candidate/authority","edit_digest":"sha256:3737373737373737373737373737373737373737373737373737373737373737"}
+protected_paths [".gooo/authority.gooo","internal/bootstrap/model.go"]
+current_ownership_policy_digest "sha256:1111111111111111111111111111111111111111111111111111111111111111"
+immutable_evaluator_release_digest "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+branch_protection_snapshot {"source":"github-ruleset-api","digest":"sha256:2727272727272727272727272727272727272727272727272727272727272727","required_status_checks":{"contexts":["build","test","vet"]},"complete":true,"observed_by":{"id":"observer-07","role":"observation","artifact_id":"artifact-protection-07"},"artifact_id":"protection-07"}
+credential_authority {"identity":{"id":"guardian-07","role":"execution","artifact_id":"credential-07"},"guardian_app_id":"app-07","guardian_app_client_id":"client-07","guardian_app_private_key":"sha256:5555555555555555555555555555555555555555555555555555555555555555"}
+proposed_authority_delta {"proposer_id":"external-reviewer-07","proposer_branch":"review/authority","proposer_edit_digest":"sha256:6666666666666666666666666666666666666666666666666666666666666666","touches":["docs/independent.md"]}
+authorities {"policy":{"id":"policy-07","role":"policy","artifact_id":"artifact-policy-07"},"observation":{"id":"observer-07","role":"observation","artifact_id":"artifact-protection-07"},"execution":{"id":"guardian-07","role":"execution","artifact_id":"credential-07"},"human_decision":{"id":"human-07","role":"human_decision","artifact_id":"decision-07"}}
+signer_identities [{"id":"signer-07","role":"signer","artifact_id":"signature-07"}]
+approver_identities []
+timestamps {"candidate_started_at":"2026-08-30T00:00:00Z","observed_at":"2026-08-31T00:01:00Z","signed_at":"2026-08-31T00:02:00Z","approved_at":"2026-08-31T00:03:00Z","issued_at":"2026-08-31T00:04:00Z"}
+observed_artifacts {"protection":{"source":"github-ruleset-api","digest":"sha256:2727272727272727272727272727272727272727272727272727272727272727","required_status_checks":{"contexts":["build","test","vet"]},"complete":true,"observed_by":{"id":"observer-07","role":"observation","artifact_id":"artifact-protection-07"},"artifact_id":"protection-07"},"paths":{"tuple":{"repository":"kimjooyoon/gooo-authority-bootstrap","base":"base-20260830","head":"head-20260831","pr":609},"authority":{"id":"observer-07","role":"observation","artifact_id":"artifact-protection-07"},"artifact_id":"paths-07","complete":false,"expected_count":3044,"observed_count":3044,"paths":[]},"prior_receipt":null,"evaluator_identity":{"id":"immutable-evaluator-07","role":"evaluator","artifact_id":"evaluator-release-07"},"human_decision":null,"replay":{"equal":false,"tuple":{"repository":"kimjooyoon/gooo-authority-bootstrap","base":"base-20260830","head":"head-20260831","pr":609},"artifact_id":"replay-07"},"independent_improvements":[{"id":"improvement-docs","description":"Improve independent documentation checks","touches":["docs/independent.md"],"independent":true},{"id":"improvement-parser","description":"Improve parser diagnostics outside the core route","touches":["internal/bootstrap/source.go"],"independent":true}],"green_check_observed":true}
+predeclared_authority null

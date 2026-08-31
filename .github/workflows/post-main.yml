@@ -1,0 +1,28 @@
+name: post-main-artifacts
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  post-main:
+    name: post-main
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Go 1.27
+        uses: actions/setup-go@v6
+        with:
+          go-version: '1.27.x'
+          cache: true
+      - name: Generate caller-owned artifacts
+        run: go run ./cmd/gooo-bootstrap -source .gooo/authority.gooo -output "$RUNNER_TEMP/gooo-authority-artifacts" -inventory-root .
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: gooo-authority-bootstrap-artifacts
+          path: ${{ runner.temp }}/gooo-authority-artifacts

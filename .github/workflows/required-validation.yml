@@ -1,0 +1,37 @@
+name: required-validation
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  required:
+    name: required
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Go 1.27
+        uses: actions/setup-go@v6
+        with:
+          go-version: '1.27.x'
+          cache: true
+      - name: gofmt
+        run: test -z "$(gofmt -l .)"
+      - name: build
+        run: go build ./...
+      - name: test
+        run: go test ./...
+      - name: vet
+        run: go vet ./...
+      - name: conformance
+        run: go test ./internal/bootstrap -run '^TestConformanceCorpus$' -count=1
+      - name: replay
+        run: go test ./internal/bootstrap -run '^TestDeterministicReplay$' -count=1
+      - name: artifact audit
+        run: go test ./internal/bootstrap -run '^TestArtifactAudit$' -count=1
