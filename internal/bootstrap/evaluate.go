@@ -105,7 +105,7 @@ func Evaluate(ir SemanticIR, metrics Metrics) (Evaluation, error) {
 		ProtectedPaths:               append([]string(nil), input.ProtectedPaths...),
 		CurrentOwnershipPolicyDigest: input.CurrentOwnershipPolicyDigest,
 		EvaluatorReleaseDigest:       input.ImmutableEvaluatorReleaseDigest,
-		ProposedAuthorityDelta:        input.ProposedAuthorityDelta,
+		ProposedAuthorityDelta:       input.ProposedAuthorityDelta,
 		RequiredExternalAuthority:    requirements,
 		BlockedBy:                    blockedBy,
 		UnknownFrontier:              unknownFrontier,

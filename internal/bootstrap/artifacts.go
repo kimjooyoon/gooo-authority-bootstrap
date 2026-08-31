@@ -12,7 +12,7 @@ import (
 type ArtifactFile struct {
 	Path          string `json:"path"`
 	Bytes         int    `json:"bytes"`
-	PhysicalLines int   `json:"physical_lines"`
+	PhysicalLines int    `json:"physical_lines"`
 	Digest        string `json:"digest"`
 }
 

@@ -107,7 +107,7 @@ type PredeclaredAuthority struct {
 	Identity             string   `json:"identity"`
 	ArtifactID           string   `json:"artifact_id"`
 	BindingDigest        string   `json:"binding_digest"`
-	BoundBeforeCandidate bool   `json:"bound_before_candidate"`
+	BoundBeforeCandidate bool     `json:"bound_before_candidate"`
 	BoundAt              string   `json:"bound_at"`
 	Threshold            int      `json:"threshold"`
 	Members              []string `json:"members"`
